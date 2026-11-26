@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Token Launch Radar</title>
+  <link rel="stylesheet" href="app.css">
+  <script defer src="../data.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#ranking">Skip to rankings</a>
+  <header class="mast">
+    <span class="wordmark"><span aria-hidden="true">◉</span> Token Radar</span>
+    <nav aria-label="Sections">
+      <a href="#ranking">Rankings</a>
+      <a href="#issued">Issued tokens</a>
+      <a href="#model">Methodology</a>
+    </nav>
+  </header>
+  <main>
+    <p id="error" role="alert">Snapshot data could not be loaded.</p>
+    <div id="dashboard" hidden>
+      <header class="hero">
+        <div>
+          <p class="eyebrow" id="snapshot"></p>
+          <h1>Token Launch Radar</h1>
+          <p>Pre-token protocols ranked by estimated fully diluted value if a token launches.</p>
+        </div>
+        <dl id="summary" class="summary"></dl>
+      </header>
+      <section id="ranking" aria-labelledby="ranking-title">
+        <div class="section-head"><h2 id="ranking-title">Pre-token rankings</h2><p id="count" role="status"></p></div>
+        <div class="controls">
+          <label>Search <input id="search" type="search" placeholder="Name, category or chain"></label>
+          <label>Category <select id="category"></select></label>
+          <label>Chain <select id="chain"></select></label>
+          <label class="toggle"><input id="watchlist" type="checkbox"> Watchlist only</label>
+          <button id="reset" type="button">Clear filters</button>
+        </div>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable pre-token rankings">
+          <table id="ranked-table" aria-labelledby="ranking-title"><thead></thead><tbody></tbody></table>
+        </div>
+      </section>
+      <section id="issued" aria-labelledby="issued-title">
+        <div class="section-head"><div><h2 id="issued-title">Already-issued tokens</h2><p>Market caps recorded in the snapshot.</p></div><p id="live-count"></p></div>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable issued-token table">
+          <table aria-labelledby="issued-title"><thead><tr>
+            <th scope="col">Protocol</th><th scope="col">Category</th><th scope="col">Chains</th><th scope="col">TVL</th><th scope="col">7d change</th><th scope="col">Market cap</th>
+          </tr></thead><tbody id="live-rows"></tbody></table>
+        </div>
+      </section>
+      <section id="model" aria-labelledby="model-title">
+        <div class="section-head"><h2 id="model-title">Valuation methodology</h2></div>
+        <div class="method">
+          <p class="formula">Implied = TVL × base × growth × age × chain</p>
+          <p id="scope"></p>
+          <p id="calibration"></p>
+          <p id="factors"></p>
+        </div>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable family calibration">
+          <table>
+            <caption>Family calibration</caption>
+            <thead><tr><th scope="col">Family</th><th scope="col">Prior</th><th scope="col">Observed median</th><th scope="col">Sample size</th><th scope="col">Evidence weight</th><th scope="col">Base multiple</th><th scope="col">Prior rationale</th></tr></thead>
+            <tbody id="families"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+  <dialog id="detail" aria-labelledby="detail-title">
+    <header class="drawer-head">
+      <div><p id="detail-rank" class="eyebrow"></p><h2 id="detail-title"></h2><p id="detail-meta"></p></div>
+      <form method="dialog"><button autofocus>Close</button></form>
+    </header>
+    <div id="detail-body"></div>
+  </dialog>
+</body>
+</html>
